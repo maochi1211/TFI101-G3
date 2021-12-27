@@ -42,5 +42,3 @@ for symbol in tickers:
     ticker = symbol[:symbol.index(str2)]
     k_candle_15m_chart(ticker)
     print(ticker)
-
-
