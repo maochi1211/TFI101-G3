@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>LineBot Login</title>
+  </head>
+  <body>
+    <div class="row" style="margin: 10px">
+        <div class="col-12" style="margin: 10px">
+          <label>姓名</label>
+          <input type="text" id="name" class="form-control" />
+          <br/>
+          <label>性別</label>
+          <select id="sex" class="form-control"/>
+            <option>男</option>
+            <option>女</option>
+          </select>
+          </br>
+          <label>年齡</label>
+          <input type="number" id="age" class="form-control"/>
+          </br>
+          <label>職業</label>
+          <select id="job" class="form-control"/>
+              <option>農牧業</option>
+              <option>漁業</option>
+              <option>木材森林業</option>
+              <option>礦業採石業</option>
+              <option>交通運輸業</option>
+              <option>餐旅業</option>
+              <option>建築工程業</option>
+              <option>製造業</option>
+              <option>新聞廣告業</option>
+              <option>衛生保健業</option>
+              <option>娛樂業</option>
+              <option>文教機關</option>
+              <option>宗教團體</option>
+              <option>公共事業</option>
+              <option>一般商業</option>
+              <option>服務業</option>
+              <option>家庭管理</option>
+              <option>治安人員</option>
+              <option>軍人</option>
+              <option>科技業</option>
+              <option>職業運動人員</option>
+              <option>金融業</option>
+              <option>學生</option>
+              <option>自由業</option>
+              <option>退休人士</option>
+              <option>一般職業</option>
+              <option>業務</option>
+              <option>全職投資</option>
+              <option>會計</option>
+          </select>
+          </br>
+          <label>投資市場</label>
+            <select id="invent_type" class="form-control"/>
+              <option>台股</option>
+              <option>ETF</option>
+              <option>台指期貨</option>
+              <option>權證</option>
+              <option>選擇權</option>
+              <option>美股</option>
+              <option>海外期貨</option>
+              <option>股票期貨</option>
+              <option>外匯</option>
+              <option>外股</option>
+              <option>基金</option>
+              <option>房地產</option>
+              <option>加密貨幣</option>
+              <option>原油</option>
+              <option>黃金</option>
+              <option>債券</option>
+              <option>保險</option>
+          </select>
+          </br>
+          <label>加入股市時間長短</label>
+            <select id="invest_time" class="form-control"/>
+                <oprion>一年內</oprion>
+                <option>一~三年</option>
+                <option>三~五年</option>
+                <option>五~十年</option>
+                <option>十年以上</option>
+            </select>
+          </br>
+          <button class="btn btn-success btn-block" id="sure">確定</button>
+        </div>
+    </div>
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  </body>
+</html>
