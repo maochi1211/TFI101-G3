@@ -9,27 +9,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    
+
     <title>LineBot Login</title>
   </head>
   <body>
-  <form action="/login" method="POST">      
+  <form action="/typeClassfication" method="POST">
     <div class="row" style="margin: 10px">
         <div class="col-12" style="margin: 10px">
           <label>姓名</label>
-          <input type="text" id="name" class="form-control" />
+          <input type="text" id="name" name="name" class="form-control" />
           <br/>
           <label>性別</label>
-          <select id="sex" class="form-control"/>
+          <select id="sex" name="sex" class="form-control"/>
             <option>男</option>
             <option>女</option>
           </select>
           </br>
           <label>年齡</label>
-          <input type="number" id="age" class="form-control"/>
+          <input type="number" id="age" name="age" class="form-control"/>
           </br>
           <label>職業</label>
-          <select id="job" class="form-control"/>
+          <select id="job" name="job" class="form-control"/>
               <option>農牧業</option>
               <option>漁業</option>
               <option>木材森林業</option>
@@ -62,7 +62,7 @@
           </select>
           </br>
           <label>加入股市時間長短</label>
-            <select id="invest_time" class="form-control"/>
+            <select id="invest_time" name="invest_time" class="form-control"/>
                 <oprion>一年內</oprion>
                 <option>一~三年</option>
                 <option>三~五年</option>
@@ -72,7 +72,7 @@
           </br>
           <label>投資市場</label>
           </br>
-            <select class="selectpicker" multiple />
+            <select class="selectpicker" name="selectpicker" multiple />
               <option>台股</option>
               <option>ETF</option>
               <option>台指期貨</option>
@@ -92,7 +92,7 @@
               <option>保險</option>
             </select>
           </br>
-          </br>        
+          </br>
           <button class="btn btn-success btn-block" id="sure">確定</button>
         </div>
     </div>
