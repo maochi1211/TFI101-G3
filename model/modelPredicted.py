@@ -62,7 +62,7 @@ def featureInput():
         # print(featuresInput.shape)
         # print(request.form)
 
-        model = load_model('./modelTag.h5', compile=False)
+        model = load_model('./modelTag_V3.h5', compile=False)
         predicted = model.predict(featuresInput)
 
         # print(predicted)
