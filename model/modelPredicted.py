@@ -71,7 +71,8 @@ def featureInput():
         resh = predicted[0]
         top_k = 3
         top_k_idx = resh.argsort()[::-1][0:top_k]
-        print("困擾類型:", top_k_idx)
+        predictedType = top_k_idx+1
+        print("困擾類型:", predictedType)
 
     return render_template('login.html')
 
