@@ -46,6 +46,3 @@ def pyETLSeekingAlphaNews(stock):
 
     # print(type(result))
     return result
-
-
-
