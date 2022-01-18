@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block custom_tabContent %}
+<div class="tab-pane fade" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab"
+     xmlns="http://www.w3.org/1999/html">
+    W底又稱為雙重底，是種底部型態，「W底」的形成是當股價跌了一波，反彈後又再度跌回前次低點，守穩後又再度反彈突破前高，股票價格在連續2次下跌的低點大致相同，形成一種型態，這種型態就屬於「W底」
+<img src="https://lh4.googleusercontent.com/K10Hx1CKpBKiqCe1ujiB0byc2yLP65BOqFrWYHte1rGrxKaSar1Ixc00JfqZRIFPZf0EfmESVshzTu5KK_4FvpatTJ2EifFWTAufytwIP5DvjPpgZKiNGmCnXXPy3cywmY0EBzHR" class="img-fluid mb-2" alt="white sample"/>
+</div>
+<div class="tab-pane fade active show" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+    1.W底，指的是當價格指數往下跌了一段時間後，在即將連續上漲前會呈現的圖型，此為買進訊號。</br>
+    2.W 底，容易發生在股價波段的低檔，由兩個低點與一個高點組成，不論是左腳高、右腳高或左右兩腳同高，都是 W 底型態的一種。</br>
+    3.頸線，是多空攻防的重要趨勢線，而W底的二個谷底是市場對價格底線的測試，經過二次測試不破，顯示測試成功，價格需在頸線帶量突破，則趨勢反轉型態才告確立。</br>
+    4.可用W底型態來推估目標價，底部至頸線距離，約等同於頸線至目標價的距離。</br>
+</div>
+<div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+<img src="https://lh3.googleusercontent.com/JLdTdrRpu0I3dUZOnuDRcnsowm7Ma_LxuNy6uvLvqFGjIVbMGpvvtNKrO1_OQ3_MErxLhFk8nQXRIFBYPpSEtRy8EHafN8a5h98eRstEO27WLtOkrpb1OS0Pd1_vOMjvLSxqeY-G" class="img-fluid mb-2" alt="white sample"/>
+</div>
+{% endblock %}
+
+{% block form %}
+<form action="/typew" method="POST">
+    <div class="form-row align-items-center">
+        <div class="col col-sm form-group">
+            <label for="company">Company</label>
+            <select class="form-control" id="company" autocomplete="on" name="company_w">
+                {% for company in tickers_list %}
+                <option>{{company}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col col-sm form-group">
+          <label for="start_date">Start Date:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control float-right" id="start_date" name="start_date_w" placeholder="yyyy-mm-dd">
+          </div>
+          <!-- /.input group -->
+        </div>
+        <div class="col col-sm form-group">
+          <label for="end_date">End Date:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control float-right" id="end_date" name="end_date_w" placeholder="yyyy-mm-dd">
+          </div>
+          <!-- /.input group -->
+        </div>
+        <div class="col col-sm">
+          <br> <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+
+
+{% block img_card %}
+<div class="card-header border-0">
+    <div class="d-flex justify-content-between">
+      <h3 class="card-title">{{company}}</h3>
+      <p class="text-primary" >{{search_start_date}} ~ {{search_end_date}}</p>
+    </div>
+</div>
+<div class="card-body">
+    <div class="position-relative mb-4">
+        {% set url='static/img/forecast/%s.jpg' %company %}
+      <img src="{{url}}" class="img-fluid mb-2" alt="white sample"/>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+        <p class="text-primary">Forecast Date:</p>
+        {% for i in forecast_date %}
+        &nbsp<p class="text-primary">{{i}} </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block tbody %}
+{% for data in data%}
+<tr>
+    {% if data is not none %}
+    <td>{{data[0]}}</td>
+    <td>{{"%.2f%%" %(data[1]*100) if data[1] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[2]*100) if data[2] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[3]*100) if data[3] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[4]*100) if data[4] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[5]*100) if data[5] is not none else 'NONE'}}</td>
+    {% endif %}
+</tr>
+{% endfor %}
+{% endblock %}

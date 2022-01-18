@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block custom_tabContent %}
+<div class="tab-pane fade" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab"
+     xmlns="http://www.w3.org/1999/html">
+    M頭經常出現在股價波段的高檔，由「兩個高點」與「一個低點」組成，不論是左肩較高、右肩較高或是左右肩同高，都是 M 頭型態的一種。
+    在M頭折返的過程中，低點的數字就會是價格的防守線，這條線稱為「頸線」，是多空攻防的重要趨勢線，透過頸線，可以觀察到趨勢反轉訊號，不論是在上升趨勢中跌破頸線，或是下降趨勢突破頸線皆然。
+<img src="https://lh5.googleusercontent.com/v2nHinTBZvP3EjUdy_XUEfoK5DI7TAkP1mHfla99DwFbcBf_ZNwUHyUxWf02yvyq_BJty3sIQM6SNn9RraQwrwabrpX51OVPW1pkYtXwqIpDMuxwdhmlgWBhRNgHBNmOU_NYMTSc" class="img-fluid mb-2" alt="white sample"/>
+</div>
+<div class="tab-pane fade active show" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+    1.M頭型態，由兩個高點與一個低點組成，容易發生在股價波段的高檔在，是股價將連續下跌前會呈現的圖型，常被視為賣出訊號。不論是左肩高、右肩高或左右兩肩同高，都是M頭型態的一種。</br>
+    2.M頭型態的頸線，是多空攻防的重要趨勢線，當股價有效跌破頸線，趨勢反轉型態便確立。可用M頭型態來推估目標價，頭部至頸線距離，約等同於頸線至目標價的距離。</br>
+</div>
+<div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+<img src="https://lh5.googleusercontent.com/9PuCpU-RL1VQDRe5iu3bq9lJsYuXA2IocU-aZQxxfzpTakqpnEQCAJRaAW8TCckeZ9tH_a560EP9wiaYAEU2A7hs3eMfVaK08vyzWJHlwi78e5wzo4Oq2mfbn_0l1YjPTOsdicaG" class="img-fluid mb-2" alt="white sample"/>
+</div>
+{% endblock %}
+
+{% block form %}
+<form action="/typem" method="POST">
+    <div class="form-row align-items-center">
+        <div class="col col-sm form-group">
+            <label for="company">Company</label>
+            <select class="form-control" id="company" autocomplete="on" name="company_m">
+                {% for company in tickers_list %}
+                <option>{{company}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col col-sm form-group">
+          <label for="start_date">Start Date:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control float-right" id="start_date" name="start_date_m" placeholder="yyyy-mm-dd">
+          </div>
+          <!-- /.input group -->
+        </div>
+        <div class="col col-sm form-group">
+          <label for="end_date">End Date:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control float-right" id="end_date" name="end_date_m" placeholder="yyyy-mm-dd">
+          </div>
+          <!-- /.input group -->
+        </div>
+        <div class="col col-sm">
+          <br> <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+
+
+{% block img_card %}
+<div class="card-header border-0">
+    <div class="d-flex justify-content-between">
+      <h3 class="card-title">{{company}}</h3>
+      <p class="text-primary" >{{search_start_date}} ~ {{search_end_date}}</p>
+    </div>
+</div>
+<div class="card-body">
+    <div class="position-relative mb-4">
+        {% set url='static/img/forecast/%s.jpg' %company %}
+      <img src="{{url}}" class="img-fluid mb-2" alt="white sample"/>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+        <p class="text-primary">Forecast Date:</p>
+        {% for i in forecast_date %}
+        &nbsp<p class="text-primary">{{i}} </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block tbody %}
+{% for data in data%}
+<tr>
+    {% if data is not none %}
+    <td>{{data[0]}}</td>
+    <td>{{"%.2f%%" %(data[1]*100) if data[1] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[2]*100) if data[2] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[3]*100) if data[3] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[4]*100) if data[4] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[5]*100) if data[5] is not none else 'NONE'}}</td>
+    {% endif %}
+</tr>
+{% endfor %}
+{% endblock %}

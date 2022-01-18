@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block custom_tabContent %}
+<div class="tab-pane fade" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab"
+     xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+ 成因:引發v自反轉型態，直接原因是造成市場上升的資金充足推動力非常強，並且後進持續，信心穩定</br>
+<img src="https://th.bing.com/th/id/OIP.UCdfgoUT8G1lceFbMCswawHaCh?pid=ImgDet&rs=1" class="img-fluid mb-2" alt="white sample">
+</div>
+<div class="tab-pane fade active show" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+ 造成v字型反轉有三個關鍵要素:</br>
+    1.引發的推動資金非常充足</br>
+    2.產生持續不衰竭的購買力</br>
+    3.市場的信心穩定情緒轉好</br>
+</div>
+<div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+<img src="https://th.bing.com/th/id/R.823638b7c24806a31572142eede55a31?rik=zKeRmchzlnnLdQ&pid=ImgRaw&r=0" class="img-fluid mb-2" alt="white sample"/>
+</div>
+{% endblock %}
+
+{% block form %}
+<form action="/typev" method="POST">
+    <div class="form-row align-items-center">
+    <div class="col col-sm form-group">
+        <label for="company">Company</label>
+        <select class="form-control" id="company" autocomplete="on" name="company">
+            {% for company in tickers_list %}
+            <option>{{company}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col col-sm form-group">
+      <label for="start_date">Start Date:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control float-right" id="start_date" name="start_date" placeholder="yyyy-mm-dd">
+      </div>
+      <!-- /.input group -->
+    </div>
+    <div class="col col-sm form-group">
+      <label for="end_date">End Date:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control float-right" id="end_date" name="end_date" placeholder="yyyy-mm-dd">
+      </div>
+      <!-- /.input group -->
+    </div>
+    <div class="col col-sm">
+      <br> <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </div>
+    </div>
+</form>
+{% endblock %}
+
+
+
+{% block img_card %}
+<div class="card-header border-0">
+    <div class="d-flex justify-content-between">
+      <h3 class="card-title">{{company}}</h3>
+      <p class="text-primary" >{{search_start_date}} ~ {{search_end_date}}</p>
+    </div>
+</div>
+<div class="card-body">
+    <div class="position-relative mb-4">
+        {% set url='static/img/forecast/%s.jpg' %company %}
+      <img src="{{url}}" class="img-fluid mb-2" alt="white sample"/>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+        <p class="text-primary">Forecast Date:</p>
+        {% for i in forecast_date %}
+        &nbsp<p class="text-primary">{{i}} </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block tbody %}
+{% for data in data%}
+<tr>
+    {% if data is not none %}
+    <td>{{data[0]}}</td>
+    <td>{{"%.2f%%" %(data[1]*100) if data[1] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[2]*100) if data[2] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[3]*100) if data[3] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[4]*100) if data[4] is not none else 'NONE'}}</td>
+    <td>{{"%.2f%%" %(data[5]*100) if data[5] is not none else 'NONE'}}</td>
+    {% endif %}
+</tr>
+{% endfor %}
+{% endblock %}
