@@ -25,6 +25,33 @@
   <link rel="stylesheet" href="static/css/buttons.bootstrap4.min.css">
   {% block headerlink %}{% endblock %}
 </head>
+
+<style>
+  #main-header, #content-wrapper {
+    margin-left: 250px !important;
+  }
+  .main-sidebar, .main-sidebar::before {
+      width: 250px;
+  }
+  @media (max-width: 767.98px) {
+    .main-sidebar, .main-sidebar::before {
+      margin-left: 0px!important;
+    }
+    #main-header, #content-wrapper {
+      margin-left: 0px !important;
+    }
+    .main-sidebar, .main-sidebar::before {
+      width: 0px;
+    }
+  }
+
+  .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
+      margin-left: 0px!important;
+  }
+  .sidebar-collapse.sidebar-mini .main-sidebar .nav-sidebar .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar .nav-sidebar .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar .nav-sidebar .nav-link {
+      width: auto!important;
+  }
+</style>
 <!--
 `body` tag options:
 
@@ -37,11 +64,11 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" id="main-header">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" id="sidebar-button" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
@@ -79,7 +106,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" id="sidebar">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <span class="brand-text font-weight-light">股市百憂解</span>
@@ -147,7 +174,7 @@
     <!-- /.sidebar -->
   </aside>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -249,12 +276,6 @@
 </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
   <footer class="main-footer">
   </footer>
@@ -273,5 +294,24 @@
 <script src="static/js/adminlte.js"></script>
 <!-- select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+<!--    $('aside').width(0);-->
+    $( "#sidebar-button" ).click(() => {
+      const bodyWidth = $('#content-wrapper').width();
+      const sidebarWidth = $('aside').width();
+      if (sidebarWidth === 0) {
+        $('aside').width(250);
+        $('#main-header').attr('style', 'margin-left: 250px !important');
+        $('#content-wrapper').attr('style', 'margin-left: 250px !important');
+      } else {
+        $('aside').width(0);
+        $('#main-header').attr('style', 'margin-left: 0px !important');
+        $('#content-wrapper').attr('style', 'margin-left: 0px !important');
+      }
+    });
+  });
+</script>
 </body>
 </html>
